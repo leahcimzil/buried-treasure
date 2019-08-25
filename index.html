@@ -49,7 +49,7 @@ function getDistanceHint(distance){
 		return "You are really close";
 
 	} else if (distance <40){
-		return "You are close!";
+		return "You are quite close!";
 
 	} else if (distance <80){
 		return "Hmmm, not too far, not too close either!";
@@ -102,8 +102,8 @@ $('#map').click(function(event){
 	//Update if player click was close enough to win
 	if (distance<5){
 		alert(`Congratulations, You have found the treasure with ${clicks} click(s) left!`);
-		return;
 	}
+	return
 	
 
 
