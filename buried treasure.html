@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Treasure Game </title>
+</head>
+
+<body>
+
+<h1 id = "heading">Find The Buried Treasure!</h1>
+
+<img id="map" width=400 height=400 src="http://nostarch.com/images/treasuremap.png">
+
+
+<p id = "distance"></p>
+<p id = "clicksLeft"></p>
+
+<script src = "https://code.jquery.com/jquery-3.4.1.js"></script>
+
+<script>
+//Game code 
+
+//Setting Necessary Functions
+
+//get random number
+
+function getRandomNumber(size){
+	return Math.floor(Math.random()*size);
+}
+
+
+//Get distance between event and target
+
+function getDistance(event,target){
+	var diffx = event.offsetX - target.x;
+	var diffy = event.offsetY - target.y;
+	return Math.sqrt((diffx*diffx) + (diffy*diffy));
+};
+
+//Hints on how close player is from target
+
+function getDistanceHint(distance){
+	if(distance < 10){
+		return "Boiling Hot";
+
+	} else if (distance < 20){
+		return "Really Hot";
+
+	} else if (distance <40){
+		return "Hot!";
+
+	} else if (distance <80){
+		return "Warm!";
+
+	} else if (distance<160){
+		return "Cold!";
+
+	} else if (distance<320){
+		return "Ice Cold!";
+
+	} else {
+		return "Freezing!";
+	}
+};
+
+//Setting Up Necessary Variables
+
+var width = 400;
+var height = 400;
+var clicks = 20;
+
+//Creating a random Target location
+
+
+var target = {
+	x:getRandomNumber(width),
+	y:getRandomNumber(height)
+			};
+
+//Add Click Handler
+$('#map').click(function(event){
+	clicks--;
+	
+//Update if player click was close enough to win	
+if (distance<8){
+		alert(`Congratulations, You have found the treasure with ${clicks} click left!`);
+		return;
+	}
+	if (clicks<1){
+		alert("Oops You only have 20 clicks"
+			+ "  Refresh to play again");
+		return;
+	}
+
+	//Get Distance Between Click and Event
+	var distance = getDistance(event,target);
+
+	//Convert Distance to Hint
+	var distanceHint = getDistanceHint(distance);
+
+	//Update the #distance element in html with hint
+	$('#distance').text(distanceHint);
+
+	$('#clicksLeft').text(`You have ${clicks} clicks left`);
+
+	
+	
+
+
+});
+
+</script>
+
+</body>
+</html>
