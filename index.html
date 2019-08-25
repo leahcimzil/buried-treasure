@@ -97,11 +97,11 @@ $('#map').click(function(event){
 	//Update the #distance element in html with hint
 	$('#distance').text(distanceHint);
 
-	$('#clicksLeft').text(`You have ${clicks} clicks left`);
+	$('#clicksLeft').text(`You have ${clicks} click(s) left`);
 	
 	//Update if player click was close enough to win
 	if (distance<5){
-		alert(`Congratulations, You have found the treasure with ${clicks} click left!`);
+		alert(`Congratulations, You have found the treasure with ${clicks} click(s) left!`);
 		return;
 	}
 	
