@@ -42,25 +42,25 @@ function getDistance(event,target){
 
 function getDistanceHint(distance){
 	if(distance < 10){
-		return "Boiling Hot";
+		return "You are just a few steps away!";
 
 	} else if (distance < 20){
-		return "Really Hot";
+		return "You are <b> really close</b>";
 
 	} else if (distance <40){
-		return "Hot!";
+		return "You are close!";
 
 	} else if (distance <80){
-		return "Warm!";
+		return "Hmmm, not too far, not too close either!";
 
 	} else if (distance<160){
-		return "Cold!";
+		return "You are far!";
 
 	} else if (distance<320){
-		return "Ice Cold!";
+		return "You are really far!";
 
 	} else {
-		return "Freezing!";
+		return "You couldn't be farther from the treasure than you are now!";
 	}
 };
 
@@ -81,12 +81,6 @@ var target = {
 //Add Click Handler
 $('#map').click(function(event){
 	clicks--;
-	
-//Update if player click was close enough to win	
-if (distance<8){
-		alert(`Congratulations, You have found the treasure with ${clicks} click left!`);
-		return;
-	}
 	if (clicks<1){
 		alert("Oops You only have 20 clicks"
 			+ "  Refresh to play again");
@@ -103,8 +97,12 @@ if (distance<8){
 	$('#distance').text(distanceHint);
 
 	$('#clicksLeft').text(`You have ${clicks} clicks left`);
-
 	
+	//Update if player click was close enough to win
+	if (distance<5){
+		alert(`Congratulations, You have found the treasure with ${clicks} click left!`);
+		return;
+	}
 	
 
 
